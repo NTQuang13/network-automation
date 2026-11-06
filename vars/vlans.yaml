@@ -1,0 +1,5 @@
+vlans:
+  - { id: 10, name: Sales, svi_ip: 10.10.10.1/24 }
+  - { id: 20, name: IT, svi_ip: 10.20.20.1/24 }
+  - { id: 30, name: Guest }
+  - { id: 99, name: Mgmt }

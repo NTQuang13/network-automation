@@ -1,0 +1,22 @@
+defaults:
+  username: admin
+  password: admin
+  device_type: arista_eos
+  timeout: 20
+devices:
+  - { name: core1, host: 172.30.20.11, role: core, gateway: true }
+  - { name: core2, host: 172.30.20.12, role: core }
+  - {
+      name: acc1,
+      host: 172.30.20.21,
+      role: access,
+      access_port: Ethernet2,
+      access_vlan: 10,
+    }
+  - {
+      name: acc2,
+      host: 172.30.20.22,
+      role: access,
+      access_port: Ethernet2,
+      access_vlan: 20,
+    }

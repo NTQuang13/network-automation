@@ -1,0 +1,21 @@
+{% for v in vlans %}
+vlan {{ v.id }}
+   name {{ v.name }}
+{% endfor %}
+{% if dev.role == 'core' %}
+interface Ethernet1-2
+   switchport mode trunk
+{% if dev.gateway %}
+ip routing
+{% for v in vlans if v.svi_ip %}
+interface Vlan{{ v.id }}
+   ip address {{ v.svi_ip }}
+{% endfor %}
+{% endif %}
+{% else %}
+interface Ethernet1
+   switchport mode trunk
+interface {{ dev.access_port }}
+   switchport mode access
+   switchport access vlan {{ dev.access_vlan }}
+{% endif %}

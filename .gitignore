@@ -1,0 +1,33 @@
+# Môi trường Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Credential và biến môi trường
+.env
+*.env
+secrets.yaml
+credentials.yaml
+
+# Dữ liệu sinh ra khi chạy (không commit)
+backups/
+logs/
+reports/
+
+# Containerlab tự sinh
+.clab/
+clab-netauto/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
