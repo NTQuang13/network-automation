@@ -23,9 +23,13 @@ topology:
       exec:
         - ip addr add 10.20.20.101/24 dev eth1
         - ip route replace default via 10.20.20.1
+    h3:
+      kind: linux
+      exec: ["ip link set eth1 down"]
   links:
     - endpoints: ["core1:eth1", "core2:eth1"]
     - endpoints: ["core1:eth2", "acc1:eth1"]
     - endpoints: ["core2:eth2", "acc2:eth1"]
     - endpoints: ["acc1:eth2", "h1:eth1"]
     - endpoints: ["acc2:eth2", "h2:eth1"]
+    - endpoints: ["acc1:eth3", "h3:eth1"]
