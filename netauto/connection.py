@@ -1,7 +1,7 @@
 import logging, time
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from netmiko import ConnectHandler
+from netmiko import ConnectHandler, ReadTimeout
 from netmiko.exceptions import NetmikoTimeoutException, NetmikoAuthenticationException
 
 log = logging.getLogger("netauto")
@@ -15,16 +15,21 @@ def setup_logging():
 
 def run_on_device(dev, task, retries=2, **kwargs):
     params = {k: dev[k] for k in ("host", "device_type", "username", "password")}
+    params["secret"] = dev.get("secret", "")      # EOS mặc định không có enable password
     params["timeout"] = int(dev.get("timeout", 20))
+    params["session_log"] = f"logs/session_{dev['name']}.log"
     err = "UNKNOWN"
     for attempt in range(1, retries + 1):
         try:
             with ConnectHandler(**params) as conn:
-                return {"name": dev["name"], "ok": True, "data": task(conn, dev, **kwargs)}
+                if not conn.check_enable_mode():
+                    conn.enable()
+                return {"name": dev["name"], "ok": True,
+                        "data": task(conn, dev, **kwargs)}
         except NetmikoAuthenticationException:
             log.error("%s: sai credential", dev["name"])
             return {"name": dev["name"], "ok": False, "error": "AUTH_FAILED"}
-        except NetmikoTimeoutException:
+        except (NetmikoTimeoutException, ReadTimeout):
             log.warning("%s: timeout (%d/%d)", dev["name"], attempt, retries)
             err = "TIMEOUT"
             time.sleep(2)

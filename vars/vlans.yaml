@@ -3,3 +3,4 @@ vlans:
   - { id: 20, name: IT, svi_ip: 10.20.20.1/24 }
   - { id: 30, name: Guest }
   - { id: 99, name: Mgmt }
+  - { id: 40, name: Finance }
