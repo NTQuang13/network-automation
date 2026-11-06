@@ -1,0 +1,7 @@
+rules:
+  - name: Cổng không dùng phải shutdown
+    type: interface_unused_shutdown
+  - name: NTP đã cấu hình
+    must_contain: "ntp server"
+  - name: Không bật telnet
+    must_not_contain: "management telnet"

@@ -1,6 +1,7 @@
 defaults:
   username: admin
   password: admin
+  secret: ""
   device_type: arista_eos
   timeout: 20
 devices:

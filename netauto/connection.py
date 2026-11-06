@@ -15,7 +15,8 @@ def setup_logging():
 
 def run_on_device(dev, task, retries=2, **kwargs):
     params = {k: dev[k] for k in ("host", "device_type", "username", "password")}
-    params["secret"] = dev.get("secret", "")      # EOS mặc định không có enable password
+    if dev.get("secret"):
+        params["secret"] = dev["secret"]
     params["timeout"] = int(dev.get("timeout", 20))
     params["session_log"] = f"logs/session_{dev['name']}.log"
     err = "UNKNOWN"
