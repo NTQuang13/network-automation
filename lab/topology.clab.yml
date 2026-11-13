@@ -1,0 +1,26 @@
+name: netauto
+mgmt:
+  network: netauto-mgmt
+  ipv4-subnet: 172.20.20.0/24
+topology:
+  kinds:
+    arista_ceos:
+      image: ceos:4.37.0F
+  nodes:
+    core1: { kind: arista_ceos, mgmt-ipv4: 172.20.20.11 }
+    core2: { kind: arista_ceos, mgmt-ipv4: 172.20.20.12 }
+    acc1: { kind: arista_ceos, mgmt-ipv4: 172.20.20.21 }
+    acc2: { kind: arista_ceos, mgmt-ipv4: 172.20.20.22 }
+    acc3: { kind: arista_ceos, mgmt-ipv4: 172.20.20.23 }
+    acc4: { kind: arista_ceos, mgmt-ipv4: 172.20.20.24 }
+    edge1: { kind: arista_ceos, mgmt-ipv4: 172.20.20.31 }
+    edge2: { kind: arista_ceos, mgmt-ipv4: 172.20.20.32 }
+  links:
+    - endpoints: ["core1:eth1", "core2:eth1"]
+    - endpoints: ["core1:eth2", "acc1:eth1"]
+    - endpoints: ["core1:eth3", "acc2:eth1"]
+    - endpoints: ["core2:eth2", "acc3:eth1"]
+    - endpoints: ["core2:eth3", "acc4:eth1"]
+    - endpoints: ["core1:eth4", "edge1:eth1"]
+    - endpoints: ["core2:eth4", "edge2:eth1"]
+    - endpoints: ["edge1:eth2", "edge2:eth2"]
