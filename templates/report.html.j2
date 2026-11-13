@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Network Report</title>
+<style>
+ body{font-family:sans-serif;margin:2rem}
+ .tbl{border-collapse:collapse;margin-bottom:2rem}
+ .tbl th,.tbl td{border:1px solid #ccc;padding:4px 10px}
+ .tbl th{background:#333;color:#fff}
+ .bad{background:#f8d7da}.good{background:#d4edda}
+</style></head><body>
+<h1>Network Report - {{ ts }}</h1>
+<p>Tổng thiết bị: <b>{{ total }}</b> | Lỗi kết nối: <b>{{ failed }}</b></p>
+{% for title, table in sections %}<h2>{{ title }}</h2>{{ table | safe }}{% endfor %}
+</body></html>
