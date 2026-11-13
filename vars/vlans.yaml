@@ -1,0 +1,5 @@
+vlans:
+  - { id: 10, name: Sales }
+  - { id: 20, name: IT }
+  - { id: 30, name: Guest }
+  - { id: 40, name: Demo }

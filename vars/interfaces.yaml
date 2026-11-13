@@ -1,0 +1,4 @@
+interfaces:
+  acc1:
+    - { name: Ethernet1, mode: trunk, vlans: "10,20,30,99" }
+    - { name: Ethernet2, mode: access, vlan: 10, desc: PC-Sales }

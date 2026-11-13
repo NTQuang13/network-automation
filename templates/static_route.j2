@@ -1,0 +1,3 @@
+{% for r in routes.get(dev.name, []) %}
+ip route {{ r.prefix }} {{ r.next_hop }}
+{% endfor %}

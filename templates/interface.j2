@@ -1,0 +1,11 @@
+{% for i in interfaces.get(dev.name, []) %}
+interface {{ i.name }}
+   description {{ i.desc | default(i.name) }}
+{% if i.mode == 'access' %}
+   switchport mode access
+   switchport access vlan {{ i.vlan }}
+{% else %}
+   switchport mode trunk
+   switchport trunk allowed vlan {{ i.vlans }}
+{% endif %}
+{% endfor %}
