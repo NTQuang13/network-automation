@@ -1,0 +1,20 @@
+defaults:
+  username: admin
+  password: CHANGEME
+  secret: ""
+  timeout: 15
+
+devices:
+  # Core (L3, inter-VLAN routing)
+  - { name: core1, host: 172.20.20.11, device_type: arista_eos, role: core }
+  - { name: core2, host: 172.20.20.12, device_type: arista_eos, role: core }
+
+  # Access switch
+  - { name: acc1, host: 172.20.20.21, device_type: arista_eos, role: access }
+  - { name: acc2, host: 172.20.20.22, device_type: arista_eos, role: access }
+  - { name: acc3, host: 172.20.20.23, device_type: arista_eos, role: access }
+  - { name: acc4, host: 172.20.20.24, device_type: arista_eos, role: access }
+
+  # Edge / router
+  - { name: edge1, host: 172.20.20.31, device_type: arista_eos, role: edge }
+  - { name: edge2, host: 172.20.20.32, device_type: arista_eos, role: edge }
