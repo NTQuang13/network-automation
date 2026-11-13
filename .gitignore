@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dữ liệu sinh ra khi chạy
+backups/
+logs/
+data/
+reports/
+
+# Bí mật và file riêng
+.env
+inventory/devices.yaml
+demo.cast
+
+# Image cEOS (nặng và có bản quyền)
+*.tar.xz
+*.tar.gz
+
+# Containerlab
+clab-*/
+.vscode/

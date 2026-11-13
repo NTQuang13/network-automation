@@ -1,0 +1,8 @@
+netmiko
+pyyaml
+jinja2
+textfsm
+ntc-templates
+pandas
+openpyxl
+pytest
